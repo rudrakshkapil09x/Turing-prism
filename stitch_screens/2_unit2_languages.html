@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;family=Inter:wght@200..800&amp;family=Space+Grotesk:wght@300..700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary": "#fff9ef",
+                        "primary-container": "#917eff",
+                        "on-primary-fixed-variant": "#441cc8",
+                        "on-primary-fixed": "#1a0063",
+                        "tertiary-fixed": "#e2e2e2",
+                        "on-primary-container": "#28008a",
+                        "surface-dim": "#131313",
+                        "tertiary": "#c6c6c7",
+                        "on-tertiary": "#2f3131",
+                        "on-secondary-fixed-variant": "#544600",
+                        "surface-variant": "#353534",
+                        "secondary-container": "#ffdb3c",
+                        "on-secondary-container": "#725f00",
+                        "on-primary": "#2e009c",
+                        "surface-container-lowest": "#0e0e0e",
+                        "on-secondary-fixed": "#221b00",
+                        "tertiary-container": "#909191",
+                        "on-tertiary-container": "#282a2a",
+                        "surface-container-highest": "#353534",
+                        "on-background": "#e5e2e1",
+                        "on-secondary": "#3a3000",
+                        "inverse-surface": "#e5e2e1",
+                        "inverse-on-surface": "#313030",
+                        "surface-container-low": "#1c1b1b",
+                        "outline": "#928ea1",
+                        "error-container": "#93000a",
+                        "surface-container-high": "#2a2a2a",
+                        "surface-tint": "#c9bfff",
+                        "primary-fixed-dim": "#c9bfff",
+                        "primary": "#c9bfff",
+                        "on-tertiary-fixed-variant": "#454747",
+                        "inverse-primary": "#5d3fe0",
+                        "surface-bright": "#3a3939",
+                        "on-surface": "#e5e2e1",
+                        "error": "#ffb4ab",
+                        "secondary-fixed-dim": "#e9c400",
+                        "surface-container": "#201f1f",
+                        "secondary-fixed": "#ffe16d",
+                        "outline-variant": "#484555",
+                        "surface": "#131313",
+                        "on-error": "#690005",
+                        "background": "#131313",
+                        "on-tertiary-fixed": "#1a1c1c",
+                        "on-error-container": "#ffdad6",
+                        "tertiary-fixed-dim": "#c6c6c7",
+                        "primary-fixed": "#e5deff",
+                        "on-surface-variant": "#c9c4d8"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Newsreader"],
+                        "body": ["Inter"],
+                        "label": ["Space Grotesk"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(24px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.05)
+        }
+        .prism-gradient {
+            background: linear-gradient(135deg, #7B61FF 0%, #FFDB3C 100%)
+        }
+        .prism-text {
+            background: linear-gradient(135deg, #7B61FF 0%, #FFDB3C 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent
+        }
+        .text-fade-reveal {
+            mask-image: linear-gradient(to bottom, white 30%, rgba(255,255,255,0.4) 70%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to bottom, white 30%, rgba(255,255,255,0.4) 70%, transparent 100%);
+        }
+        .ghost-border {
+            outline: 1px solid rgba(72, 69, 85, 0.3)
+        }
+        .material-symbols-outlined {
+            font-variation-settings: "FILL" 0, "wght" 300, "GRAD" 0, "opsz" 24
+        }
+        .perspective-lg {
+            perspective: 2000px
+        }
+        .preserve-3d {
+            transform-style: preserve-3d
+        }
+        /* Updated Obsidian Texture: Clean deep black with subtle noise/vignette only */
+        .obsidian-texture {
+            background-color: #080808;
+            background-image: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.03) 0%, transparent 70%);
+        }
+        .three-d-node {
+            transform: translatez(50px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(123, 97, 255, 0.1)
+        }
+        .three-d-layer-1 {
+            transform: translatez(20px);
+            opacity: 0.6
+        }
+        .three-d-layer-2 {
+            transform: translatez(-30px);
+            opacity: 0.3;
+            filter: blur(2px)
+        }
+        .layer-projection {
+            animation: float 6s ease-in-out infinite
+        }
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotateX(5deg) rotateY(-5deg);
+            } 50% {
+                transform: translateY(-20px) rotateX(10deg) rotateY(5deg);
+            }
+        }
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+    </style>
+</head>
+<body class="obsidian-texture text-on-surface font-body selection:bg-primary-container selection:text-on-primary-container min-h-screen">
+<!-- Top Navigation Bar -->
+<nav class="fixed top-0 w-full z-50 bg-[#080808]/60 backdrop-blur-2xl border-b border-white/5">
+<div class="flex justify-between items-center px-12 py-8 w-full max-w-screen-2xl mx-auto">
+<div class="text-2xl font-headline italic text-secondary tracking-tighter">The Monograph</div>
+<div class="hidden md:flex items-center gap-12">
+<a class="text-[#E5E2E1]/60 font-label uppercase tracking-widest text-[10px] hover:text-[#FFDB3C] transition-colors duration-500" href="#">Theory</a>
+<a class="text-[#FFF9EF] border-b border-[#FFDB3C]/50 pb-1 font-label uppercase tracking-widest text-[10px] hover:text-[#FFDB3C] transition-colors duration-500" href="#">Curations</a>
+<a class="text-[#E5E2E1]/60 font-label uppercase tracking-widest text-[10px] hover:text-[#FFDB3C] transition-colors duration-500" href="#">Archives</a>
+</div>
+<div class="flex items-center gap-6">
+<span class="material-symbols-outlined text-[#C9BFFF] cursor-pointer" data-icon="menu">menu</span>
+</div>
+</div>
+</nav>
+<!-- Side Navigation -->
+<aside class="hidden lg:flex flex-col h-full w-72 left-0 top-0 fixed bg-[#050505]/80 backdrop-blur-xl border-r border-white/5 py-12 px-8 z-40">
+<div class="mb-16 mt-20">
+<div class="font-headline italic text-2xl text-[#FFF9EF] mb-1">Computation</div>
+<div class="font-label uppercase tracking-[0.2em] text-[10px] text-primary/60">The Universal Grammar</div>
+</div>
+<nav class="flex flex-col gap-8 flex-grow">
+<a class="group flex items-center gap-4 text-[#E5E2E1]/40 hover:text-[#C9BFFF] transition-all duration-300" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="settings_ethernet">settings_ethernet</span>
+<span class="font-label uppercase tracking-[0.2em] text-[10px]">Automata</span>
+</a>
+<a class="group flex items-center gap-4 text-[#FFDB3C] font-bold transition-all duration-300" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="blur_on">blur_on</span>
+<span class="font-label uppercase tracking-[0.2em] text-[10px]">Complexity</span>
+</a>
+<a class="group flex items-center gap-4 text-[#E5E2E1]/40 hover:text-[#C9BFFF] transition-all duration-300" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="memory">memory</span>
+<span class="font-label uppercase tracking-[0.2em] text-[10px]">Computability</span>
+</a>
+<a class="group flex items-center gap-4 text-[#E5E2E1]/40 hover:text-[#C9BFFF] transition-all duration-300" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="architecture">architecture</span>
+<span class="font-label uppercase tracking-[0.2em] text-[10px]">Logic</span>
+</a>
+</nav>
+<div class="mt-auto pt-8 border-t border-white/5">
+<button class="w-full py-4 px-6 prism-gradient rounded-full text-on-primary-fixed font-label uppercase tracking-widest text-[10px] font-bold mb-8 hover:shadow-[0_0_30px_rgba(123,97,255,0.4)] transition-shadow">
+                Explore Proofs
+            </button>
+<a class="flex items-center gap-4 text-[#E5E2E1]/40 hover:text-[#C9BFFF] transition-all duration-300" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="tune">tune</span>
+<span class="font-label uppercase tracking-[0.2em] text-[10px]">Settings</span>
+</a>
+</div>
+</aside>
+<main class="lg:pl-72 pt-32 min-h-screen">
+<div class="max-w-screen-2xl mx-auto px-12 pb-24">
+<!-- Hero Header Section -->
+<header class="relative mb-24 perspective-lg">
+<div class="relative z-10">
+<span class="font-label text-primary tracking-[0.4em] uppercase text-xs mb-6 block">Section 02 — Formal Systems</span>
+<h1 class="font-headline text-8xl md:text-[11rem] italic leading-[0.85] tracking-tighter mb-12 drop-shadow-2xl text-fade-reveal">
+<span class="block prism-text">Languages &amp;</span>
+<span class="prism-text inline-block">Regular Expressions</span>
+</h1>
+<div class="flex flex-col md:flex-row md:items-end gap-12">
+<p class="max-w-xl text-on-surface-variant font-body text-xl leading-relaxed opacity-80">
+                            An exploration into the syntactic foundations of computational logic. This module simulates the transition from declarative algebraic notation to deterministic kinetic states.
+                        </p>
+<div class="h-px flex-grow bg-white/10 mb-3 hidden md:block"></div>
+<div class="font-label text-secondary-container text-sm tracking-[0.2em]">UNIT 2.4.1 — THOMPSON'S CONSTRUCTION</div>
+</div>
+</div>
+</header>
+<!-- Syntactic Transformation Workspace -->
+<section class="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-32 perspective-lg">
+<!-- Input Panel -->
+<div class="lg:col-span-4 flex flex-col gap-8">
+<div class="glass-panel p-10 rounded-2xl relative overflow-hidden group transition-all duration-500 hover:border-primary/40 shadow-2xl">
+<div class="absolute top-0 right-0 p-6 opacity-20 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="code">code</span>
+</div>
+<label class="font-label text-[10px] uppercase tracking-[0.3em] text-primary/60 block mb-8">RegEx String Input</label>
+<div class="relative">
+<input class="w-full bg-transparent border-b-2 border-white/10 py-6 text-5xl font-headline italic text-secondary focus:outline-none focus:border-secondary-container transition-all" type="text" value="(a|b)*abb"/>
+<div class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-700 group-hover:w-full"></div>
+</div>
+<div class="mt-12 flex flex-col gap-6">
+<div class="flex justify-between items-center text-sm font-label">
+<span class="text-on-surface-variant tracking-wider uppercase text-[10px]">Alphabet Σ</span>
+<span class="text-secondary font-bold">{a, b}</span>
+</div>
+<div class="flex justify-between items-center text-sm font-label">
+<span class="text-on-surface-variant tracking-wider uppercase text-[10px]">Complexity Class</span>
+<span class="text-secondary font-bold">O(2ⁿ) Worst Case</span>
+</div>
+</div>
+</div>
+<div class="glass-panel p-10 rounded-2xl flex items-center justify-between group hover:bg-white/5 transition-all cursor-pointer">
+<div>
+<div class="font-headline italic text-2xl text-secondary">Subset Construction</div>
+<div class="text-[10px] font-label uppercase tracking-widest text-on-surface-variant mt-1">NFA → DFA Transformation</div>
+</div>
+<div class="w-14 h-14 rounded-full border border-primary/30 flex items-center justify-center group-hover:bg-primary group-hover:text-on-primary transition-all">
+<span class="material-symbols-outlined text-xl" data-icon="arrow_forward">arrow_forward</span>
+</div>
+</div>
+</div>
+<!-- Simulation Visualizer (The Canvas) -->
+<div class="lg:col-span-8 h-[700px] relative rounded-3xl overflow-hidden glass-panel group preserve-3d perspective-lg shadow-[0_40px_100px_rgba(0,0,0,0.8)]">
+<div class="absolute inset-0 z-0 overflow-hidden bg-black/40">
+<!-- Subtle mesh for depth, no chroma -->
+<div class="absolute inset-0 opacity-5" style="background-image: radial-gradient(circle at 2px 2px, #fff 1px, transparent 0); background-size: 60px 60px;"></div>
+</div>
+<!-- HUD Overlays -->
+<div class="absolute top-10 left-10 z-30 flex flex-col gap-3">
+<div class="flex items-center gap-4">
+<span class="w-2 h-2 rounded-full bg-secondary-container animate-pulse shadow-[0_0_10px_#ffdb3c]"></span>
+<span class="font-label text-[10px] uppercase tracking-[0.4em] text-secondary">Real-Time Synthesis</span>
+</div>
+<div class="font-headline italic text-on-surface-variant text-lg">Compiling multi-dimensional state vectors...</div>
+</div>
+<!-- 3D Layered Graph Mockup -->
+<div class="absolute inset-0 flex items-center justify-center z-20 layer-projection preserve-3d">
+<div class="relative w-full h-full flex items-center justify-center">
+<!-- Layer 2 (Deep Background) - Monochromatic abstract light -->
+<div class="absolute inset-0 flex items-center justify-center three-d-layer-2">
+<div class="w-full h-full bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.05)_0%,transparent_70%)]"></div>
+</div>
+<!-- Layer 1 (Midground) -->
+<div class="absolute inset-0 flex items-center justify-center three-d-layer-1">
+<div class="w-[500px] h-[500px] border border-white/5 rounded-full animate-[spin_20s_linear_infinite]"></div>
+<div class="absolute w-[400px] h-[400px] border border-white/5 rounded-full animate-[spin_15s_linear_infinite_reverse]"></div>
+</div>
+<!-- Main State Nodes (Foreground) -->
+<div class="relative flex items-center justify-center gap-24 preserve-3d">
+<!-- q0 -->
+<div class="w-32 h-32 rounded-2xl glass-panel three-d-node flex items-center justify-center group/node cursor-pointer transition-all hover:scale-110">
+<div class="font-headline italic text-4xl text-secondary">q₀</div>
+<div class="absolute -inset-4 border border-white/10 rounded-3xl opacity-0 group-hover/node:opacity-100 transition-opacity"></div>
+</div>
+<!-- Connection -->
+<div class="relative h-px w-32 bg-white/20 overflow-hidden">
+<div class="absolute inset-0 bg-white/40 animate-[shimmer_2s_infinite]"></div>
+</div>
+<!-- q1 -->
+<div class="w-32 h-32 rounded-2xl glass-panel three-d-node flex items-center justify-center group/node cursor-pointer transition-all hover:scale-110">
+<div class="font-headline italic text-4xl text-on-surface-variant opacity-60">q₁</div>
+<div class="absolute -inset-4 border border-white/10 rounded-3xl opacity-0 group-hover/node:opacity-100 transition-opacity"></div>
+</div>
+<!-- Connection -->
+<div class="relative h-px w-32 bg-white/10"></div>
+<!-- q2 (Final State) -->
+<div class="w-32 h-32 rounded-2xl glass-panel three-d-node flex items-center justify-center group/node cursor-pointer transition-all hover:scale-110">
+<div class="absolute inset-0 border-4 border-double border-secondary-container/30 rounded-2xl"></div>
+<div class="font-headline italic text-4xl text-secondary-container drop-shadow-[0_0_15px_#ffdb3c]">q₂</div>
+<div class="absolute -inset-4 border border-secondary-container/20 rounded-3xl opacity-0 group-hover/node:opacity-100 transition-opacity"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="absolute bottom-10 right-10 z-30 flex gap-6">
+<button class="w-14 h-14 rounded-full glass-panel flex items-center justify-center hover:bg-white/10 transition-all">
+<span class="material-symbols-outlined text-secondary" data-icon="zoom_in">zoom_in</span>
+</button>
+<button class="w-14 h-14 rounded-full glass-panel flex items-center justify-center hover:bg-white/10 transition-all">
+<span class="material-symbols-outlined text-secondary" data-icon="fullscreen">fullscreen</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Metadata & Details Bento -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-12 perspective-lg">
+<div class="md:col-span-1 glass-panel p-10 rounded-2xl hover:border-white/20 transition-colors shadow-xl">
+<h3 class="font-headline text-4xl italic prism-text mb-8">Historical Context</h3>
+<p class="text-on-surface-variant font-body text-base leading-relaxed mb-10 opacity-70">
+                        Kleene's Theorem states that a language is regular if and only if it is recognized by a finite automaton. This realization bridges the gap between pure mathematical sets and physical computational execution.
+                    </p>
+<div class="flex items-center gap-4 text-secondary-container group cursor-pointer">
+<span class="font-label text-[10px] uppercase tracking-[0.3em] group-hover:tracking-[0.5em] transition-all">Read Thesis</span>
+<span class="material-symbols-outlined text-sm" data-icon="open_in_new">open_in_new</span>
+</div>
+</div>
+<div class="md:col-span-2 relative h-80 rounded-2xl overflow-hidden group shadow-xl">
+<img alt="blackboard with math formulas" class="absolute inset-0 w-full h-full object-cover brightness-[0.4] grayscale opacity-60 group-hover:scale-105 transition-transform duration-[2s]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1CQrdEmG8AAK0dHuxvxILI-syjVWH4c6x_A257uFVmMwBwIw0Lkt_92u-btU_XMj98wSoN5VR_gxDLRVoJhtTXtrioEbxKhODBXzpW0ayVmHZ2lBAXtjeRIfB4OHLiU7QTFhUKV7lvGyeJyrLdRTbDGoV0KFZIrW-UFi0267QnGygffotJQPike3cp54qVyQP-UqcC_O0YqSZMnA1ec1yysW2zkjRkDwxCNyGiVsBhW5XTT0qAI0JC8WD-DiEJvXtCJnBxYA9oQ"/>
+<div class="absolute inset-0 bg-gradient-to-t from-[#080808] via-transparent to-transparent opacity-90"></div>
+<div class="absolute bottom-10 left-10 right-10 flex justify-between items-end">
+<div>
+<div class="font-label text-[10px] uppercase tracking-[0.4em] text-secondary opacity-60 mb-4">Computational Archetype</div>
+<div class="font-headline text-5xl prism-text italic">Deterministic vs.<br/>Non-Deterministic</div>
+</div>
+<span class="material-symbols-outlined text-6xl text-secondary-container/50 animate-pulse" data-icon="waves">waves</span>
+</div>
+</div>
+</section>
+<!-- Refraction Lens (Summary) -->
+<section class="mt-40 max-w-5xl mx-auto perspective-lg">
+<div class="glass-panel p-20 rounded-[4rem] relative overflow-hidden text-center shadow-[0_50px_120px_rgba(0,0,0,0.8)] border-white/5">
+<div class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
+<span class="font-label text-secondary-container tracking-[0.6em] uppercase text-[10px] mb-12 block">Curator's Summary</span>
+<blockquote class="font-headline text-5xl md:text-6xl text-secondary leading-tight mb-16 px-4">
+                        "The transition from <span class="prism-text">regular grammar</span> to machine instruction is the closest humanity has come to weaving logic into the physical fabric of reality."
+                    </blockquote>
+<div class="flex justify-center items-center gap-16">
+<div class="text-center group">
+<div class="font-headline italic text-4xl text-secondary group-hover:scale-110 transition-transform">1951</div>
+<div class="font-label text-[10px] uppercase tracking-[0.3em] text-on-surface-variant mt-2">Kleene Foundation</div>
+</div>
+<div class="h-16 w-px bg-white/10"></div>
+<div class="text-center group">
+<div class="font-headline italic text-4xl text-secondary group-hover:scale-110 transition-transform">2.4k</div>
+<div class="font-label text-[10px] uppercase tracking-[0.3em] text-on-surface-variant mt-2">Active States</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Footer Meta -->
+<footer class="lg:pl-72 py-20 px-12 border-t border-white/5 bg-[#050505]">
+<div class="max-w-screen-2xl mx-auto flex flex-col md:flex-row justify-between items-center gap-12 opacity-30 hover:opacity-100 transition-all duration-700">
+<div class="flex items-center gap-12">
+<span class="font-label text-[10px] uppercase tracking-[0.3em] hover:text-secondary cursor-pointer transition-colors">Computation.v2.4</span>
+<span class="font-label text-[10px] uppercase tracking-[0.3em] hover:text-secondary cursor-pointer transition-colors">Legal Artifacts</span>
+<span class="font-label text-[10px] uppercase tracking-[0.3em] hover:text-secondary cursor-pointer transition-colors">Protocol 721</span>
+</div>
+<div class="font-headline italic text-xl tracking-tighter text-secondary">The Monograph © 2024</div>
+</div>
+</footer>
+</body></html>

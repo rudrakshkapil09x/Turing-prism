@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,700;1,400;1,700&amp;family=Manrope:wght@300;400;600&amp;family=Space+Grotesk:wght@300;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary-fixed": "#e5deff",
+                    "on-primary-fixed-variant": "#441cc8",
+                    "surface-container-lowest": "#0e0e0e",
+                    "on-surface-variant": "#c9c4d8",
+                    "surface-dim": "#131313",
+                    "surface": "#131313",
+                    "on-primary-container": "#28008a",
+                    "tertiary-fixed": "#e2e2e2",
+                    "on-secondary-container": "#725f00",
+                    "on-secondary-fixed-variant": "#544600",
+                    "surface-bright": "#3a3939",
+                    "secondary-container": "#ffdb3c",
+                    "primary-fixed-dim": "#c9bfff",
+                    "surface-tint": "#c9bfff",
+                    "on-tertiary-fixed": "#1a1c1c",
+                    "surface-container-low": "#1c1b1b",
+                    "inverse-primary": "#5d3fe0",
+                    "on-tertiary": "#2f3131",
+                    "inverse-on-surface": "#313030",
+                    "on-secondary": "#3a3000",
+                    "on-tertiary-fixed-variant": "#454747",
+                    "outline-variant": "#484555",
+                    "on-primary": "#2e009c",
+                    "on-error": "#690005",
+                    "tertiary-fixed-dim": "#c6c6c7",
+                    "surface-variant": "#353534",
+                    "on-primary-fixed": "#1a0063",
+                    "on-background": "#e5e2e1",
+                    "secondary-fixed-dim": "#e9c400",
+                    "surface-container-high": "#2a2a2a",
+                    "error-container": "#93000a",
+                    "surface-container-highest": "#353534",
+                    "on-secondary-fixed": "#221b00",
+                    "inverse-surface": "#e5e2e1",
+                    "tertiary": "#c6c6c7",
+                    "on-tertiary-container": "#282a2a",
+                    "tertiary-container": "#909191",
+                    "primary-container": "#917eff",
+                    "background": "#131313",
+                    "surface-container": "#201f1f",
+                    "secondary-fixed": "#ffe16d",
+                    "primary": "#c9bfff",
+                    "secondary": "#fff9ef",
+                    "outline": "#928ea1",
+                    "on-surface": "#e5e2e1",
+                    "on-error-container": "#ffdad6",
+                    "error": "#ffb4ab"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Newsreader"],
+                    "body": ["Manrope"],
+                    "label": ["Space Grotesk"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-pane {
+            background: rgba(19, 19, 19, 0.4);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(72, 69, 85, 0.2);
+            border-left: 1px solid rgba(72, 69, 85, 0.2);
+        }
+        .chromatic-glow {
+            background: radial-gradient(circle at center, rgba(123, 97, 255, 0.15) 0%, transparent 70%);
+        }
+        .text-refraction {
+            mix-blend-mode: overlay;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body selection:bg-primary-container/30 overflow-x-hidden">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 flex justify-between items-center px-12 py-6 bg-[#131313]/80 backdrop-blur-xl">
+<div class="text-2xl font-['Newsreader'] italic font-bold bg-gradient-to-r from-[#7B61FF] to-[#FFD700] bg-clip-text text-transparent">
+            MONOGRAPH
+        </div>
+<div class="hidden md:flex space-x-12">
+<a class="font-['Newsreader'] italic tracking-tighter text-[#E5E2E1] opacity-60 hover:opacity-100 hover:text-[#C9BFFF] transition-all duration-500 cursor-pointer active:scale-95">Theory</a>
+<a class="font-['Newsreader'] italic tracking-tighter text-[#FFDB3C] border-b border-[#FFDB3C] pb-1 hover:opacity-100 transition-all duration-500 cursor-pointer active:scale-95">Research</a>
+<a class="font-['Newsreader'] italic tracking-tighter text-[#E5E2E1] opacity-60 hover:opacity-100 hover:text-[#C9BFFF] transition-all duration-500 cursor-pointer active:scale-95">Library</a>
+</div>
+<div class="flex items-center space-x-6">
+<span class="material-symbols-outlined text-[#C9BFFF] cursor-pointer" data-icon="menu">menu</span>
+</div>
+</nav>
+<div class="fixed top-[88px] w-full h-[1px] bg-[#1C1B1B] z-50"></div>
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-screen w-64 z-40 bg-[#131313] flex flex-col pt-32 pb-12 px-6 space-y-8 hidden lg:flex">
+<div class="mb-8">
+<h3 class="text-[#FFF9EF] font-['Newsreader'] italic text-xl">UNITS</h3>
+<p class="font-['Space_Grotesk'] uppercase tracking-widest text-[10px] text-[#C9BFFF] opacity-60">THEORETICAL ARCHIVE</p>
+</div>
+<div class="space-y-6">
+<div class="flex items-center space-x-4 text-[#E5E2E1] opacity-40 hover:opacity-80 transition-opacity duration-300 cursor-pointer ease-in-out">
+<span class="material-symbols-outlined" data-icon="memory">memory</span>
+<span class="font-['Space_Grotesk'] uppercase tracking-widest text-[10px]">Automata</span>
+</div>
+<div class="flex items-center space-x-4 text-[#E5E2E1] opacity-40 hover:opacity-80 transition-opacity duration-300 cursor-pointer ease-in-out">
+<span class="material-symbols-outlined" data-icon="schema">schema</span>
+<span class="font-['Space_Grotesk'] uppercase tracking-widest text-[10px]">Context-Free</span>
+</div>
+<div class="flex items-center space-x-4 text-[#FFDB3C] font-bold border-l-2 border-[#FFDB3C] pl-4 cursor-pointer ease-in-out">
+<span class="material-symbols-outlined" data-icon="settings_ethernet">settings_ethernet</span>
+<span class="font-['Space_Grotesk'] uppercase tracking-widest text-[10px]">Turing</span>
+</div>
+<div class="flex items-center space-x-4 text-[#E5E2E1] opacity-40 hover:opacity-80 transition-opacity duration-300 cursor-pointer ease-in-out">
+<span class="material-symbols-outlined" data-icon="visibility_off">visibility_off</span>
+<span class="font-['Space_Grotesk'] uppercase tracking-widest text-[10px]">Decidability</span>
+</div>
+<div class="flex items-center space-x-4 text-[#E5E2E1] opacity-40 hover:opacity-80 transition-opacity duration-300 cursor-pointer ease-in-out">
+<span class="material-symbols-outlined" data-icon="psychology">psychology</span>
+<span class="font-['Space_Grotesk'] uppercase tracking-widest text-[10px]">Complexity</span>
+</div>
+</div>
+<div class="absolute bottom-0 left-0 w-full h-full pointer-events-none border-r border-[#1C1B1B]"></div>
+</aside>
+<main class="lg:ml-64 pt-32 px-8 lg:px-20 pb-32 relative">
+<!-- Aurora Background -->
+<div class="fixed inset-0 pointer-events-none overflow-hidden -z-10">
+<div class="absolute -top-1/4 -right-1/4 w-[800px] h-[800px] chromatic-glow opacity-30"></div>
+<div class="absolute top-1/2 -left-1/4 w-[600px] h-[600px] chromatic-glow opacity-20" style="filter: hue-rotate(180deg);"></div>
+</div>
+<!-- Editorial Hero -->
+<header class="max-w-6xl mx-auto mb-24">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-8">
+<div class="max-w-2xl">
+<span class="font-label text-xs uppercase tracking-[0.3em] text-primary-fixed-dim block mb-4">Theorem IV: Computational Equivalence</span>
+<h1 class="font-headline italic text-7xl md:text-9xl leading-[0.85] tracking-tighter text-secondary mb-8">
+                        Polynomial <br/>
+<span class="bg-gradient-to-r from-[#FFD700] to-[#7B61FF] bg-clip-text text-transparent">Reductions</span>
+</h1>
+</div>
+<div class="flex-shrink-0 pb-4">
+<div class="glass-pane p-8 rounded-xl border border-outline-variant/10 max-w-sm">
+<p class="font-body text-sm leading-relaxed text-on-surface-variant">
+                            A reduction is an algorithm for transforming one problem into another. The mapping <span class="italic text-secondary">A ≤p B</span> implies that if B is easy, A is also easy.
+                        </p>
+</div>
+</div>
+</div>
+</header>
+<!-- Visualizer Canvas -->
+<section class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+<!-- Problem A Plane -->
+<div class="lg:col-span-4 space-y-8">
+<div class="flex items-center space-x-3 mb-6">
+<span class="w-8 h-[1px] bg-secondary-container"></span>
+<h2 class="font-label text-xs tracking-widest uppercase">Instance Space A</h2>
+</div>
+<div class="relative group">
+<div class="absolute inset-0 bg-primary/5 blur-3xl rounded-full scale-75 group-hover:scale-100 transition-transform duration-700"></div>
+<div class="glass-pane rounded-2xl overflow-hidden aspect-[4/5] p-8 flex flex-col justify-between relative border border-outline-variant/20">
+<div>
+<div class="text-3xl font-headline italic text-secondary mb-4">Hamiltonian Path</div>
+<div class="font-body text-xs text-on-surface-variant/60 uppercase tracking-tighter">Complexity: NP-Complete</div>
+</div>
+<div class="space-y-4">
+<div class="h-24 w-full flex items-center justify-center border-b border-outline-variant/10">
+<span class="material-symbols-outlined text-5xl text-primary opacity-30" data-icon="polyline">polyline</span>
+</div>
+<div class="grid grid-cols-3 gap-2">
+<div class="h-1 bg-secondary-container"></div>
+<div class="h-1 bg-outline-variant/30"></div>
+<div class="h-1 bg-outline-variant/30"></div>
+</div>
+<p class="font-body text-xs text-on-surface-variant">Finding a path in a graph that visits every vertex exactly once.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- The Reduction Mapping -->
+<div class="lg:col-span-4 flex flex-col items-center justify-center py-20 lg:py-48 relative">
+<div class="absolute h-full w-[2px] bg-gradient-to-b from-transparent via-outline-variant/20 to-transparent"></div>
+<div class="relative z-10 glass-pane px-8 py-4 rounded-full border border-secondary-container/20 mb-12">
+<span class="font-headline italic text-secondary-container text-xl">f(x) → p(n)</span>
+</div>
+<!-- SVG Connector -->
+<svg class="w-full h-32 text-secondary-container/40" fill="none" viewbox="0 0 400 100">
+<path d="M10 50 C 150 50, 250 50, 390 50" stroke="currentColor" stroke-dasharray="8 8" stroke-width="1.5"></path>
+<circle cx="390" cy="50" fill="currentColor" r="4"></circle>
+<path d="M380 45 L390 50 L380 55" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"></path>
+</svg>
+<div class="mt-8 text-center">
+<p class="font-label text-[10px] text-primary-fixed-dim tracking-[0.4em] uppercase">Polynomial Transformation</p>
+<p class="font-body text-xs text-on-surface-variant mt-4 max-w-[200px]">Converting graph structure G into logical formula φ through mapping f.</p>
+</div>
+</div>
+<!-- Problem B Plane -->
+<div class="lg:col-span-4 space-y-8">
+<div class="flex items-center space-x-3 mb-6">
+<span class="w-8 h-[1px] bg-primary-container"></span>
+<h2 class="font-label text-xs tracking-widest uppercase">Target Space B</h2>
+</div>
+<div class="relative group">
+<div class="absolute inset-0 bg-secondary-container/5 blur-3xl rounded-full scale-75 group-hover:scale-100 transition-transform duration-700"></div>
+<div class="glass-pane rounded-2xl overflow-hidden aspect-[4/5] p-8 flex flex-col justify-between relative border border-outline-variant/20">
+<div class="text-right">
+<div class="text-3xl font-headline italic text-secondary mb-4">Boolean SAT</div>
+<div class="font-body text-xs text-on-surface-variant/60 uppercase tracking-tighter">Complexity: NP-Complete</div>
+</div>
+<div class="space-y-4">
+<div class="h-24 w-full flex items-center justify-center border-b border-outline-variant/10">
+<span class="material-symbols-outlined text-5xl text-secondary-container opacity-30" data-icon="data_object">data_object</span>
+</div>
+<div class="grid grid-cols-3 gap-2">
+<div class="h-1 bg-secondary-container"></div>
+<div class="h-1 bg-secondary-container"></div>
+<div class="h-1 bg-secondary-container"></div>
+</div>
+<p class="font-body text-xs text-on-surface-variant text-right">Determining if there exists an interpretation that satisfies a given Boolean formula.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Bento Complexity View -->
+<section class="max-w-7xl mx-auto mt-40">
+<h3 class="font-headline italic text-5xl text-secondary mb-16 text-center">Complexity Landscape</h3>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<!-- P Class -->
+<div class="md:col-span-1 glass-pane p-8 rounded-2xl hover:bg-surface-container transition-colors duration-500">
+<span class="material-symbols-outlined text-primary mb-6" data-icon="speed">speed</span>
+<h4 class="font-headline italic text-2xl text-secondary mb-4">Class P</h4>
+<p class="font-body text-sm text-on-surface-variant leading-relaxed">
+                        Deterministic polynomial time. Problems like Sorting or Matrix Multiplication reside here. The "Efficiently Solvable" foundation.
+                    </p>
+</div>
+<!-- NP Class -->
+<div class="md:col-span-1 glass-pane p-8 rounded-2xl bg-surface-container/60 border border-secondary-container/10">
+<span class="material-symbols-outlined text-secondary-container mb-6" data-icon="verified">verified</span>
+<h4 class="font-headline italic text-2xl text-secondary mb-4">Class NP</h4>
+<p class="font-body text-sm text-on-surface-variant leading-relaxed">
+                        Nondeterministic polynomial time. Solutions can be verified efficiently, even if finding them is difficult. The horizon of modern computation.
+                    </p>
+</div>
+<!-- NP-Complete -->
+<div class="md:col-span-1 glass-pane p-1 bg-gradient-to-br from-[#7B61FF] to-[#FFD700] rounded-2xl overflow-hidden group">
+<div class="bg-surface h-full w-full p-8 rounded-[14px] group-hover:bg-transparent transition-colors duration-700">
+<span class="material-symbols-outlined text-secondary-container mb-6" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<h4 class="font-headline italic text-2xl text-secondary mb-4">NP-Complete</h4>
+<p class="font-body text-sm text-on-surface-variant leading-relaxed group-hover:text-surface">
+                            The hardest problems in NP. Any problem in NP can be reduced to these. The universal connectors of algorithmic theory.
+                        </p>
+</div>
+</div>
+<!-- Large Context Feature -->
+<div class="md:col-span-3 glass-pane p-12 rounded-2xl flex flex-col md:flex-row items-center gap-12 mt-4">
+<div class="w-full md:w-1/2">
+<img alt="Abstract visualization of mathematical connections" class="w-full h-64 object-cover rounded-xl grayscale hover:grayscale-0 transition-all duration-1000" data-alt="Abstract 3D network of glowing crystal lines and nodes floating in a dark obsidian void with cinematic lighting and deep shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBqd-rwB7MNpulu4Hukzat_AAy63p2ajD9bkbBNppqgO48pkWKela6S4xTzZQh577N8LkaNK0kpphc3s4DqQ_8MdbOQqL-_y5jnjftcwH8S-OHxQCRdInlHqd2eToyNxr3kHqNA4bVMzabXHO-MUnFzWpbnJ-nG06DERYsTbU6zcN8lLPT8mHyk7PMu3Fpn_EgtUB9Mk4ta01dDeXlDGr41TRL9Elmk8usSqY1giwuT-2uSOfuQ28wZW5mUauo1TUe_S4HcdXJPHw"/>
+</div>
+<div class="w-full md:w-1/2">
+<h4 class="font-headline italic text-4xl text-secondary mb-6">The P vs NP Question</h4>
+<p class="font-body text-base text-on-surface-variant leading-relaxed mb-8">
+                            If any NP-complete problem can be solved in polynomial time, then P = NP. This remains the greatest unsolved mystery in computer science. Reductions are the tools we use to prove this boundary.
+                        </p>
+<button class="font-label text-xs uppercase tracking-widest px-8 py-3 bg-secondary-container text-on-secondary-container rounded-full hover:scale-105 transition-transform">
+                            Explore Millennium Prize
+                        </button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<div class="fixed bottom-8 left-1/2 -translate-x-1/2 rounded-full border border-[#484555]/20 bg-[#131313]/40 backdrop-blur-3xl p-2 space-x-2 flex items-center justify-center z-50 shadow-[0_0_40px_rgba(123,97,255,0.1)]">
+<div class="text-[#E5E2E1] px-8 py-3 hover:bg-[#FFF9EF]/10 transition-colors cursor-pointer flex items-center space-x-2">
+<span class="material-symbols-outlined text-sm" data-icon="step_into">step_into</span>
+<span class="font-['Space_Grotesk'] font-bold text-[11px]">Step</span>
+</div>
+<div class="bg-gradient-to-br from-[#7B61FF] to-[#FFD700] text-[#131313] rounded-full px-8 py-3 scale-105 duration-200 cursor-pointer flex items-center space-x-2">
+<span class="material-symbols-outlined text-sm" data-icon="play_arrow">play_arrow</span>
+<span class="font-['Space_Grotesk'] font-bold text-[11px]">Play</span>
+</div>
+<div class="text-[#E5E2E1] px-8 py-3 hover:bg-[#FFF9EF]/10 transition-colors cursor-pointer flex items-center space-x-2">
+<span class="material-symbols-outlined text-sm" data-icon="restart_alt">restart_alt</span>
+<span class="font-['Space_Grotesk'] font-bold text-[11px]">Reset</span>
+</div>
+</div>
+</body></html>

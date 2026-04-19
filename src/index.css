@@ -1,0 +1,358 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* === Material Symbols config === */
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+}
+
+/* === Glass Panel === */
+@layer components {
+  .glass-panel {
+    @apply relative overflow-hidden;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(24px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .glass-panel-strong {
+    @apply relative overflow-hidden;
+    background: rgba(32, 31, 31, 0.6);
+    backdrop-filter: blur(40px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .prism-gradient {
+    background: linear-gradient(135deg, #7B61FF 0%, #FFD700 100%);
+  }
+
+  .prism-text {
+    background: linear-gradient(135deg, #7B61FF 0%, #FFD700 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    /* Create space inside the box so the gradient mask isn't clipped early */
+    padding-right: 0.3em;
+    /* Pull following elements back so the layout isn't shifted by the padding */
+    margin-right: -0.3em;
+  }
+
+  .text-fade-reveal {
+    mask-image: linear-gradient(to bottom, white 30%, rgba(255,255,255,0.4) 70%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, white 30%, rgba(255,255,255,0.4) 70%, transparent 100%);
+  }
+
+  .obsidian-texture {
+    background-color: #080808;
+    background-image: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.03) 0%, transparent 70%);
+  }
+
+  .chromatic-glow {
+    background: radial-gradient(circle at center, rgba(123, 97, 255, 0.15) 0%, transparent 70%);
+  }
+
+  .ghost-border {
+    outline: 1px solid rgba(72, 69, 85, 0.3);
+  }
+
+  /* === Prism Underline (animated line beneath text) === */
+  .prism-underline {
+    @apply relative inline-block;
+  }
+  .prism-underline::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    /* Use em so the gap scales with font-size rather than being a fixed pixel offset
+       that looks too large on big headings. */
+    bottom: 0.02em;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, #7B61FF 0%, #FFD700 100%);
+    border-radius: 2px;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .prism-underline:hover::after,
+  .prism-underline.active::after {
+    transform: scaleX(1);
+  }
+
+  /* === Module Row === */
+  .module-row {
+    @apply relative cursor-pointer;
+    transition: background 0.4s ease;
+  }
+
+  /* === Result Flash === */
+  .result-flash {
+    animation: result-glow 0.6s ease-out;
+  }
+
+  /* === Fade-up entrance animation === */
+  .fade-up {
+    animation: fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  /* === Page transition === */
+  .page-enter {
+    animation: page-enter 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  /* === Pulse click feedback === */
+  .click-pulse {
+    animation: click-pulse 0.3s ease-out;
+  }
+
+  /* === Breadcrumb separator === */
+  .breadcrumb-sep::before {
+    content: '›';
+    @apply mx-2 text-on-surface-variant/30;
+  }
+
+  /* === Sparkle particle === */
+  .sparkle-particle {
+    animation: sparkle-float 1.5s ease-in-out infinite alternate;
+  }
+}
+
+/* === Dynamic Aurora === */
+.aurora {
+  position: absolute;
+  pointer-events: none;
+  filter: blur(80px);
+  opacity: 0;
+  border-radius: 50%;
+  animation: aurora-drift linear infinite;
+}
+
+.aurora-1 {
+  width: 900px;
+  height: 400px;
+  background: radial-gradient(ellipse at center, rgba(123,97,255,0.15) 0%, rgba(123,97,255,0.04) 50%, transparent 70%);
+  top: -10%;
+  left: -5%;
+  opacity: 0.8;
+  animation-duration: 18s;
+  animation-name: aurora-drift-1;
+  filter: blur(60px);
+}
+
+.aurora-2 {
+  width: 700px;
+  height: 300px;
+  background: radial-gradient(ellipse at center, rgba(255,219,60,0.1) 0%, rgba(255,107,157,0.06) 50%, transparent 70%);
+  top: 30%;
+  right: -10%;
+  opacity: 0.7;
+  animation-duration: 22s;
+  animation-name: aurora-drift-2;
+  filter: blur(80px);
+}
+
+.aurora-3 {
+  width: 600px;
+  height: 350px;
+  background: radial-gradient(ellipse at center, rgba(0,229,255,0.08) 0%, rgba(123,97,255,0.05) 60%, transparent 70%);
+  bottom: 5%;
+  left: 20%;
+  opacity: 0.6;
+  animation-duration: 26s;
+  animation-name: aurora-drift-3;
+  filter: blur(100px);
+}
+
+.aurora-4 {
+  width: 500px;
+  height: 250px;
+  background: radial-gradient(ellipse at center, rgba(0,217,163,0.08) 0%, transparent 70%);
+  top: 60%;
+  right: 30%;
+  opacity: 0.5;
+  animation-duration: 20s;
+  animation-name: aurora-drift-1;
+  animation-direction: reverse;
+  filter: blur(90px);
+}
+
+/* === Scrollbar === */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #080808;
+}
+::-webkit-scrollbar-thumb {
+  background: #484555;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #928ea1;
+}
+
+/* === Smooth scroll === */
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+/* Fix for italic fonts getting cut off */
+.italic {
+  padding-right: 0.25em;
+}
+
+/* Scroll masking for premium feel */
+.mask-h {
+  mask-image: linear-gradient(to right, transparent, black 40px, black calc(100% - 40px), transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 40px, black calc(100% - 40px), transparent);
+}
+
+/* === Canvas for simulators === */
+.simulator-canvas {
+  background-image: radial-gradient(circle at 2px 2px, rgba(255,255,255,0.04) 1px, transparent 0);
+  background-size: 40px 40px;
+}
+
+/* === State node styles === */
+.state-node {
+  @apply w-16 h-16 rounded-full border-2 border-outline-variant flex items-center justify-center cursor-pointer transition-all duration-200;
+  background: rgba(19, 19, 19, 0.8);
+  backdrop-filter: blur(10px);
+}
+.state-node:hover {
+  @apply border-lavender;
+  box-shadow: 0 0 20px rgba(201, 191, 255, 0.2);
+}
+.state-node.active {
+  @apply border-gold;
+  box-shadow: 0 0 25px rgba(255, 219, 60, 0.3);
+}
+.state-node.final {
+  outline: 3px double rgba(255, 219, 60, 0.5);
+  outline-offset: 4px;
+}
+.state-node.start::before {
+  content: '→';
+  position: absolute;
+  left: -24px;
+  color: #c9bfff;
+  font-size: 18px;
+}
+
+/* === Tape cell (Turing Machine) === */
+.tape-cell {
+  @apply w-14 h-14 border border-outline-variant flex items-center justify-center font-headline text-xl text-cream transition-all duration-300;
+  background: rgba(19, 19, 19, 0.6);
+}
+.tape-cell.head {
+  @apply border-gold bg-gold/10;
+  box-shadow: 0 0 15px rgba(255, 219, 60, 0.2);
+}
+
+/* === Stack cell (PDA) === */
+.stack-cell {
+  @apply w-full py-2 px-4 border-b border-outline-variant/30 font-label text-sm text-cream text-center transition-all duration-300;
+  background: rgba(19, 19, 19, 0.4);
+}
+.stack-cell:first-child {
+  @apply border-t border-gold/30 bg-gold/5;
+}
+
+/* === Keyframes === */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes page-enter {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.99);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes result-glow {
+  0% {
+    box-shadow: 0 0 0 0 rgba(123, 97, 255, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 30px 10px rgba(123, 97, 255, 0.2);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(123, 97, 255, 0);
+  }
+}
+
+@keyframes click-pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(0.95); }
+  100% { transform: scale(1); }
+}
+
+@keyframes float-orb {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(30px, -20px) scale(1.05); }
+  50% { transform: translate(-20px, 20px) scale(0.95); }
+  75% { transform: translate(10px, -10px) scale(1.02); }
+}
+
+@keyframes draw-line {
+  from { stroke-dashoffset: 400; }
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes shimmer-slide {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(200%); }
+}
+
+/* === Stack push/pop animation === */
+@keyframes stack-push {
+  from { opacity: 0; transform: translateY(-20px) scale(0.8); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes stack-pop {
+  from { opacity: 1; transform: translateY(0) scale(1); }
+  to { opacity: 0; transform: translateY(-20px) scale(0.8); }
+}
+.stack-enter { animation: stack-push 0.3s ease-out both; }
+.stack-exit { animation: stack-pop 0.3s ease-in both; }
+
+/* === Aurora drift keyframes === */
+@keyframes aurora-drift-1 {
+  0% { transform: translate(0, 0) rotate(0deg) scale(1); }
+  25% { transform: translate(8%, 5%) rotate(8deg) scale(1.08); }
+  50% { transform: translate(-5%, 10%) rotate(-5deg) scale(0.95); }
+  75% { transform: translate(5%, -5%) rotate(3deg) scale(1.05); }
+  100% { transform: translate(0, 0) rotate(0deg) scale(1); }
+}
+@keyframes aurora-drift-2 {
+  0% { transform: translate(0, 0) rotate(0deg) scale(1); }
+  33% { transform: translate(-10%, 8%) rotate(-10deg) scale(1.1); }
+  66% { transform: translate(8%, -5%) rotate(6deg) scale(0.9); }
+  100% { transform: translate(0, 0) rotate(0deg) scale(1); }
+}
+@keyframes aurora-drift-3 {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(15%, -10%) scale(1.2); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+
+/* === Sparkle particle === */
+@keyframes sparkle-float {
+  0% { transform: translateY(0) scale(1); opacity: 0.6; }
+  50% { transform: translateY(-8px) scale(1.4); opacity: 1; }
+  100% { transform: translateY(-14px) scale(0.6); opacity: 0; }
+}

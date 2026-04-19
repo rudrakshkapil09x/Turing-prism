@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Turing Prism | Master the Theory of Computation</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;family=Inter:wght@300;400;500;600&amp;family=Space+Grotesk:wght@300..700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-fixed": "#e2e2e2",
+                    "primary": "#c9bfff",
+                    "on-secondary-fixed-variant": "#544600",
+                    "surface-container-highest": "#353534",
+                    "inverse-surface": "#e5e2e1",
+                    "surface-container-high": "#2a2a2a",
+                    "surface-container-low": "#1c1b1b",
+                    "on-primary": "#2e009c",
+                    "on-secondary-fixed": "#221b00",
+                    "on-surface-variant": "#c9c4d8",
+                    "on-surface": "#e5e2e1",
+                    "on-primary-fixed-variant": "#441cc8",
+                    "on-secondary": "#3a3000",
+                    "on-background": "#e5e2e1",
+                    "on-tertiary": "#2f3131",
+                    "on-tertiary-container": "#282a2a",
+                    "surface-tint": "#c9bfff",
+                    "secondary": "#fff9ef",
+                    "primary-container": "#917eff",
+                    "on-tertiary-fixed": "#1a1c1c",
+                    "secondary-fixed": "#ffe16d",
+                    "primary-fixed-dim": "#c9bfff",
+                    "on-error-container": "#ffdad6",
+                    "surface-dim": "#131313",
+                    "on-secondary-container": "#725f00",
+                    "outline": "#928ea1",
+                    "primary-fixed": "#e5deff",
+                    "error-container": "#93000a",
+                    "outline-variant": "#484555",
+                    "tertiary-fixed-dim": "#c6c6c7",
+                    "on-error": "#690005",
+                    "secondary-fixed-dim": "#e9c400",
+                    "surface": "#131313",
+                    "secondary-container": "#ffdb3c",
+                    "surface-container": "#201f1f",
+                    "surface-bright": "#3a3939",
+                    "on-primary-fixed": "#1a0063",
+                    "on-tertiary-fixed-variant": "#454747",
+                    "inverse-on-surface": "#313030",
+                    "inverse-primary": "#5d3fe0",
+                    "on-primary-container": "#28008a",
+                    "surface-container-lowest": "#0e0e0e",
+                    "tertiary-container": "#909191",
+                    "background": "#131313",
+                    "error": "#ffb4ab",
+                    "tertiary": "#c6c6c7",
+                    "surface-variant": "#353534"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Newsreader", "serif"],
+                    "body": ["Inter", "sans-serif"],
+                    "label": ["Inter", "sans-serif"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .prism-gradient {
+            background: linear-gradient(135deg, #7B61FF 0%, #FFD700 100%);
+        }
+        .hero-title-gradient {
+            background: linear-gradient(135deg, #FFDB3C 0%, #7B61FF 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .glass-refraction {
+            backdrop-filter: blur(40px);
+            background: rgba(32, 31, 31, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .reveal-text {
+            mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+        }
+        .bg-text-shadow {
+            text-shadow: 0 0 20px rgba(255,255,255,0.05);
+        }
+        @keyframes spin-slow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .animate-spin-slow {
+            animation: spin-slow 20s linear infinite;
+        }
+    </style>
+</head>
+<body class="bg-[#0e0e0e] text-on-surface font-body selection:bg-primary selection:text-on-primary">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 flex justify-between items-center px-12 py-6 bg-[#0e0e0e]/60 backdrop-blur-xl border-b border-white/5">
+<div class="text-2xl font-extralight italic font-headline text-[#FFF9EF] tracking-tighter">
+        Turing Prism
+    </div>
+<div class="hidden md:flex items-center gap-12">
+<a class="text-[#FFDB3C] font-medium border-b border-[#FFDB3C]/30 text-[10px] font-label uppercase tracking-[0.2em]" href="#">Units</a>
+<a class="text-[#E5E2E1]/60 hover:text-[#C9BFFF] transition-colors duration-500 text-[10px] font-label uppercase tracking-[0.2em]" href="#">Research</a>
+<a class="text-[#E5E2E1]/60 hover:text-[#C9BFFF] transition-colors duration-500 text-[10px] font-label uppercase tracking-[0.2em]" href="#">Library</a>
+</div>
+<div class="flex items-center gap-6">
+<span class="material-symbols-outlined text-[#C9BFFF] cursor-pointer" data-icon="account_circle">account_circle</span>
+</div>
+</nav>
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-full hidden lg:flex flex-col p-8 pt-24 z-40 bg-[#0E0E0E] w-72 border-r border-white/5">
+<h3 class="font-headline text-3xl text-secondary mb-1 italic font-light">Core Units</h3>
+<p class="font-label text-[9px] text-on-surface-variant uppercase tracking-[0.25em] mb-12">The Theoretical Foundations</p>
+<div class="flex flex-col gap-8">
+<div class="flex items-center gap-4 text-[#FFF9EF] font-headline italic font-light translate-x-2 transition-transform cursor-pointer group">
+<span class="material-symbols-outlined text-[#917EFF]" data-icon="memory">memory</span>
+<span class="text-sm font-body">Automata</span>
+</div>
+<div class="flex items-center gap-4 text-[#E5E2E1]/40 hover:text-[#C9BFFF] transition-all cursor-pointer group font-light italic font-headline">
+<span class="material-symbols-outlined" data-icon="language">language</span>
+<span class="text-sm font-body">Languages</span>
+</div>
+<div class="flex items-center gap-4 text-[#E5E2E1]/40 hover:text-[#C9BFFF] transition-all cursor-pointer group font-light italic font-headline">
+<span class="material-symbols-outlined" data-icon="account_tree">account_tree</span>
+<span class="text-sm font-body">Grammars</span>
+</div>
+<div class="flex items-center gap-4 text-[#E5E2E1]/40 hover:text-[#C9BFFF] transition-all cursor-pointer group font-light italic font-headline">
+<span class="material-symbols-outlined" data-icon="schema">schema</span>
+<span class="text-sm font-body">PDA</span>
+</div>
+<div class="flex items-center gap-4 text-[#E5E2E1]/40 hover:text-[#C9BFFF] transition-all cursor-pointer group font-light italic font-headline">
+<span class="material-symbols-outlined" data-icon="settings_ethernet">settings_ethernet</span>
+<span class="text-sm font-body">Turing Machines</span>
+</div>
+<div class="flex items-center gap-4 text-[#E5E2E1]/40 hover:text-[#C9BFFF] transition-all cursor-pointer group font-light italic font-headline">
+<span class="material-symbols-outlined" data-icon="speed">speed</span>
+<span class="text-sm font-body">Complexity</span>
+</div>
+</div>
+</aside>
+<main class="lg:ml-72 pt-24 bg-[#0e0e0e]">
+<!-- Hero Section -->
+<section class="relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-12">
+<!-- Layered Background Text -->
+<div class="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
+<h2 class="text-[12vw] font-light text-white/[0.03] uppercase tracking-tighter leading-none text-center select-none whitespace-nowrap">
+                THEORY OF COMPUTATION
+            </h2>
+</div>
+<div class="relative z-10 w-full max-w-5xl flex flex-col items-center text-center">
+<!-- Central Visual -->
+<div class="w-80 h-80 relative mb-12">
+<div class="absolute inset-0 rounded-full glass-refraction border border-white/10 flex items-center justify-center shadow-[0_0_100px_rgba(123,97,255,0.15)]">
+<div class="w-4/5 h-4/5 rounded-full border border-primary/20 flex items-center justify-center">
+<div class="w-3/5 h-3/5 rounded-full border border-secondary-container/30 flex items-center justify-center">
+<span class="material-symbols-outlined text-6xl text-secondary-container animate-spin-slow" data-icon="replay" style="font-variation-settings: 'FILL' 1, 'wght' 200;">replay</span>
+</div>
+</div>
+</div>
+</div>
+<h1 class="text-7xl md:text-[6.5rem] leading-[0.9] font-headline italic font-light hero-title-gradient tracking-tighter reveal-text">
+                Master the<br/>
+                Theory of<br/>
+                Computation
+            </h1>
+<p class="mt-8 max-w-xl text-md text-on-surface-variant font-body font-light leading-relaxed">
+                An editorial exploration into the limits of what can be calculated. From finite state machines to the recursive beauty of Turing completeness.
+            </p>
+<div class="mt-12 flex items-center gap-8">
+<button class="prism-gradient px-10 py-5 rounded-full text-[#131313] font-label font-semibold uppercase tracking-[0.2em] text-[10px] hover:scale-105 transition-transform shadow-[0_10px_30px_rgba(123,97,255,0.2)]">
+                    Begin Exploration
+                </button>
+</div>
+</div>
+<!-- Technical Metadata -->
+<div class="absolute bottom-12 left-12 flex items-center gap-4">
+<div class="w-px h-12 bg-white/10"></div>
+<span class="font-label text-[9px] uppercase tracking-[0.4em] text-on-surface-variant">Decipher the logic</span>
+</div>
+</section>
+<!-- Foundational Structures -->
+<section class="py-32 px-12 max-w-7xl mx-auto">
+<div class="flex flex-col md:flex-row justify-between items-end mb-24 gap-8">
+<div>
+<span class="font-label text-[9px] uppercase tracking-[0.3em] text-primary-container font-semibold">Exhibition 01</span>
+<h2 class="text-6xl font-headline italic text-secondary mt-4 reveal-text font-extralight">Foundational Structures</h2>
+</div>
+<p class="max-w-md text-on-surface-variant/70 font-body text-sm leading-relaxed font-light">The rigid architecture of logic that governs every processor, language, and thought in the digital realm.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Automata Card -->
+<div class="col-span-1 glass-refraction p-10 group hover:bg-white/5 transition-all duration-500">
+<span class="font-label text-[9px] text-primary/60 uppercase tracking-widest font-semibold">CHAPTER I</span>
+<h3 class="text-3xl font-headline text-secondary mt-6 mb-4 font-extralight italic">Automata</h3>
+<p class="text-on-surface-variant text-[13px] leading-relaxed mb-8 font-body font-light">Exploring deterministic and non-deterministic finite systems. The alphabet of the machine.</p>
+<img class="w-full h-48 object-cover opacity-40 group-hover:opacity-80 transition-opacity grayscale" data-alt="Abstract geometric glass patterns" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCAU4RPVYCW2tKoEwWdBG-1vv1tFe3dSq4ye-JjDvOlgrmssPnmSrPzQnVSM5NBEYSyen9QxnMiKf6EtdqC88BtgO4nZkMBxuX0YhI41vEvUhufCDPYqtlZMz5hl7gSx36yzrIee8w5rdmUfHS6-UN9r__KoEQpaGBsnHJS34KBVuRbfgVLHsm_xDcZcTBMZ7QEdmuBI_6l5631mO7Hu0fwRfwO3_P1eIaElYlm0w5pK4ZUjC6L3-oO9C5cEkCl_Ej851JPnKdfwg"/>
+</div>
+<!-- Turing Machines Card -->
+<div class="md:col-span-2 glass-refraction p-10 flex flex-col md:flex-row gap-10 group hover:bg-white/5 transition-all duration-500">
+<div class="flex-1">
+<span class="font-label text-[9px] text-secondary-container/60 uppercase tracking-widest font-semibold">CHAPTER II</span>
+<h3 class="text-3xl font-headline text-secondary mt-6 mb-4 font-extralight italic">Turing Machines</h3>
+<p class="text-on-surface-variant text-[13px] leading-relaxed mb-8 font-body font-light">The universal model of computation. An infinite tape meets a finite set of rules to define boundaries.</p>
+<button class="text-[10px] font-label uppercase tracking-[0.2em] text-secondary border-b border-white/20 pb-1 group-hover:border-secondary-container transition-colors font-semibold">Read Monograph</button>
+</div>
+<div class="flex-1 h-64 md:h-auto overflow-hidden relative">
+<img class="w-full h-full object-cover grayscale opacity-30 group-hover:scale-105 transition-transform duration-700" data-alt="Clockwork mechanism" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7HqibtkVn03_5WbDamkXLkSqUn2aXOvTHL9X4OdcFzHlPZrhpKpfCS20vvY0EQ1XiVxNGRJH5PDqj8Qxr2klSxrIPrJDR4DMNsZSWruFth4Tv4NfOvAAr8KuyIL1yo4iEKK5qxmvwQs8D5fu_2iHO_ksBEp8gWVFV3CbVbAVZiTQk90N4qlEOv76NnVgCp7sPPHYsR6eQdQehD9DcSSjNCJEnBT2rBKio3epdh1qMoBbuchZ-Zrx3Zmi6A0tPRMVq-eySOfmB8A"/>
+</div>
+</div>
+<!-- Complexity Card -->
+<div class="col-span-1 md:col-span-3 glass-refraction p-12 flex items-center justify-between group hover:bg-white/5 transition-all">
+<div class="max-w-xl">
+<span class="font-label text-[9px] text-primary/60 uppercase tracking-widest font-semibold">CHAPTER III</span>
+<h3 class="text-4xl font-headline italic text-secondary mt-4 mb-2 font-extralight">Complexity Theory</h3>
+<p class="text-on-surface-variant font-body text-sm font-light">Categorizing problems by their inherent difficulty. P vs NP and the geometric growth of digital labor.</p>
+</div>
+<div class="hidden lg:flex gap-4">
+<div class="w-16 h-16 rounded-full glass-refraction flex items-center justify-center text-primary group-hover:prism-gradient group-hover:text-surface transition-all">
+<span class="material-symbols-outlined" data-icon="bolt">bolt</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Theoretical Voids -->
+<section class="py-32 bg-[#0a0a0a] relative overflow-hidden">
+<div class="px-12 max-w-7xl mx-auto">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
+<div>
+<h2 class="text-7xl font-headline font-extralight text-secondary mb-12 tracking-tight reveal-text italic">Theoretical<br/><span class="text-on-surface-variant font-extralight">Voids</span></h2>
+<div class="space-y-16">
+<div class="flex gap-8 group">
+<div class="text-primary font-label text-[10px] mt-2 opacity-40 group-hover:opacity-100 transition-opacity font-semibold">01</div>
+<div>
+<h4 class="text-2xl font-headline text-secondary mb-3 font-light italic">The Halting Problem</h4>
+<p class="text-on-surface-variant font-body text-[13px] leading-relaxed font-light">The profound proof by Alan Turing that some questions are fundamentally unanswerable by any machine.</p>
+</div>
+</div>
+<div class="flex gap-8 group">
+<div class="text-primary font-label text-[10px] mt-2 opacity-40 group-hover:opacity-100 transition-opacity font-semibold">02</div>
+<div>
+<h4 class="text-2xl font-headline text-secondary mb-3 font-light italic">Context-Free Grammars</h4>
+<p class="text-on-surface-variant font-body text-[13px] leading-relaxed font-light">The mathematical structures defining programming languages and the limits of automated parsing.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="relative">
+<div class="glass-refraction aspect-square w-full rounded-full border border-white/5 flex items-center justify-center p-20">
+<div class="w-full h-full border border-dashed border-white/10 rounded-full flex items-center justify-center animate-spin-slow">
+<span class="material-symbols-outlined text-9xl text-primary/10 select-none" data-icon="vortex">vertex_cluster</span>
+</div>
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="text-center">
+<p class="font-label text-[9px] uppercase tracking-[0.5em] text-secondary-container font-semibold">Undecidability</p>
+<p class="font-headline text-2xl italic text-secondary mt-2 font-extralight">The Edge of Logic</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="py-24 px-12 border-t border-white/5 bg-[#0e0e0e]">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start gap-12">
+<div class="max-w-sm">
+<h5 class="font-headline italic text-xl text-secondary mb-6 font-light">Turing Prism</h5>
+<p class="text-on-surface-variant font-label text-[9px] leading-relaxed uppercase tracking-[0.2em] font-light">
+                    A digital monograph dedicated to the archival preservation of theoretical computer science foundations.
+                </p>
+</div>
+<div class="grid grid-cols-2 gap-24">
+<div>
+<p class="font-label text-[9px] uppercase tracking-[0.3em] text-primary-container mb-6 font-semibold">Explore</p>
+<ul class="space-y-4 font-body text-xs text-on-surface-variant font-light">
+<li><a class="hover:text-secondary transition-colors" href="#">Finite Automata</a></li>
+<li><a class="hover:text-secondary transition-colors" href="#">Complexity Zoo</a></li>
+<li><a class="hover:text-secondary transition-colors" href="#">Formal Logic</a></li>
+</ul>
+</div>
+<div>
+<p class="font-label text-[9px] uppercase tracking-[0.3em] text-primary-container mb-6 font-semibold">Library</p>
+<ul class="space-y-4 font-body text-xs text-on-surface-variant font-light">
+<li><a class="hover:text-secondary transition-colors" href="#">Journal Vol 1</a></li>
+<li><a class="hover:text-secondary transition-colors" href="#">Technical Briefs</a></li>
+<li><a class="hover:text-secondary transition-colors" href="#">Glossary</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="max-w-7xl mx-auto mt-24 pt-12 border-t border-white/5 flex justify-between items-center text-[9px] font-label uppercase tracking-[0.3em] text-on-surface-variant/40 font-medium">
+<p>© 2024 PRISMATIC MONOGRAPH SERIES</p>
+<div class="flex gap-8">
+<span>INDEX: TM-01</span>
+<span>LOC: SILICON ARCHIVE</span>
+</div>
+</div>
+</footer>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-center pb-6 z-50">
+<div class="rounded-full mx-auto mb-8 w-fit border border-white/10 bg-[#201F1F]/40 backdrop-blur-[40px] flex items-center shadow-[0_10px_40px_rgba(0,0,0,0.5)]">
+<div class="text-[#E5E2E1] p-4 flex flex-col items-center gap-1 group cursor-pointer hover:bg-white/5 transition-all rounded-l-full px-8">
+<span class="material-symbols-outlined text-lg" data-icon="last_page">last_page</span>
+<span class="uppercase tracking-widest text-[9px] font-label font-semibold">Step</span>
+</div>
+<div class="bg-gradient-to-r from-[#7B61FF] to-[#FFD700] text-[#131313] p-4 flex flex-col items-center gap-1 px-10 scale-110 shadow-lg cursor-pointer">
+<span class="material-symbols-outlined text-lg font-semibold" data-icon="play_arrow">play_arrow</span>
+<span class="uppercase tracking-widest text-[9px] font-label font-bold">Play</span>
+</div>
+<div class="text-[#E5E2E1] p-4 flex flex-col items-center gap-1 group cursor-pointer hover:bg-white/5 transition-all rounded-r-full px-8">
+<span class="material-symbols-outlined text-lg" data-icon="restart_alt">restart_alt</span>
+<span class="uppercase tracking-widest text-[9px] font-label font-semibold">Reset</span>
+</div>
+</div>
+</nav>
+</body></html>
