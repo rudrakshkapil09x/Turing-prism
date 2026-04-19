@@ -12,6 +12,14 @@ export default function ComplexityVisualizer() {
     setHighlighted(complexityProblems[2] || complexityProblems[0]) // Select SAT or first as default
   }, [])
 
+  useEffect(() => {
+    const payload = consumeRestoreSession('complexity')
+    if (payload) {
+      setHighlighted(payload)
+      setQuery(payload.name || "")
+    }
+  }, [])
+
   const [isAnalyzing, setIsAnalyzing] = useState(false)
   const [error, setError] = useState('')
 
@@ -145,14 +153,7 @@ export default function ComplexityVisualizer() {
                   const x = 550 + (i % 2) * 40
                   const y = 220 + Math.floor(i / 2) * 40
                   const isHighlighted = highlighted === p
-                
-  useEffect(() => {
-    const payload = consumeRestoreSession('complexity')
-    if (payload) {
-      if (payload) { setHighlighted(payload); setQuery(payload.name || ""); }
-    }
-  }, [])
-  return (
+                  return (
                     <g key={p.name} onClick={() => setHighlighted(p)} className="cursor-pointer group">
                       <circle cx={x} cy={y-3} r={isHighlighted ? 4 : 2} fill={isHighlighted ? '#f87171' : 'rgba(248,113,113,0.5)'} className="transition-all" />
                       <text x={x} y={y+10} textAnchor="middle" className={`text-[9px] transition-all font-label tracking-wide ${isHighlighted ? 'fill-red-400 font-bold text-[10px]' : 'fill-red-400/80 group-hover:fill-red-400'}`}>{p.name}</text>

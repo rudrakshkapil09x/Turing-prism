@@ -157,8 +157,8 @@ function TopicSlide({ topic, isActive, onLaunch }: {
         transform: isActive ? 'scale(1) translateY(0)' : 'scale(0.98) translateY(20px)',
         transition: 'opacity 0.6s cubic-bezier(0.22,1,0.36,1), transform 0.6s cubic-bezier(0.22,1,0.36,1)',
         pointerEvents: isActive ? 'auto' : 'none',
-        paddingTop: '68px',
-        paddingBottom: '148px',
+        paddingTop: '140px',
+        paddingBottom: '180px',
       }}
     >
       {/* Per-slide aurora canvas */}
@@ -190,8 +190,8 @@ function TopicSlide({ topic, isActive, onLaunch }: {
           }}
         />
         {/* Corner rulers */}
-        <div className="absolute top-24 left-16 w-14 h-px opacity-30" style={{ background: `linear-gradient(90deg, transparent, ${topic.accent})` }} />
-        <div className="absolute top-24 left-16 w-px h-14 opacity-30" style={{ background: `linear-gradient(180deg, transparent, ${topic.accent})` }} />
+        <div className="absolute top-32 left-16 w-14 h-px opacity-30" style={{ background: `linear-gradient(90deg, transparent, ${topic.accent})` }} />
+        <div className="absolute top-32 left-16 w-px h-14 opacity-30" style={{ background: `linear-gradient(180deg, transparent, ${topic.accent})` }} />
         <div className="absolute bottom-36 right-16 w-14 h-px opacity-30" style={{ background: `linear-gradient(90deg, ${topic.accentB}, transparent)` }} />
         <div className="absolute bottom-36 right-16 w-px h-14 opacity-30" style={{ background: `linear-gradient(0deg, transparent, ${topic.accentB})` }} />
       </div>
@@ -236,7 +236,7 @@ function TopicSlide({ topic, isActive, onLaunch }: {
         <h1
           className="font-headline italic font-light tracking-tight leading-[1.05] mb-8"
           style={{
-            fontSize: 'clamp(3.5rem, 9vw, 7.5rem)',
+            fontSize: 'clamp(2rem, 7vw, 5.5rem)',
             background: `linear-gradient(135deg, ${topic.accent} 0%, ${topic.accentB} 100%)`,
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent',

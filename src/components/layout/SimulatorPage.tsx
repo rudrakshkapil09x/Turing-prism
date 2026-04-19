@@ -230,8 +230,8 @@ export default function SimulatorPage({ unitId, simulatorId, onBackToUnit, onBac
 
       {/* Main content */}
       <main
-        className="pb-16 px-6 lg:px-12 min-h-screen"
-        style={{ paddingTop: simsInUnit.length > 1 ? '160px' : '120px' }}
+        className="relative z-10 pb-16 px-6 lg:px-12 min-h-screen"
+        style={{ paddingTop: simsInUnit.length > 1 ? '190px' : '150px' }}
       >
         <div key={transitionKey} className="page-enter">
           <ActiveComponent />
