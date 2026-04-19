@@ -20,6 +20,11 @@ export default function TuringMachine() {
     setConfig(c); setHistory([c])
   }, [])
 
+  useEffect(() => {
+    const payload = consumeRestoreSession('tm')
+    if (payload) setTm(payload)
+  }, [])
+
   const handleStateMoved = (id: string, x: number, y: number) =>
     setTm(prev => ({ ...prev, states: prev.states.map(s => s.id === id ? { ...s, x, y } : s) }))
 
@@ -76,6 +81,7 @@ export default function TuringMachine() {
 
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
+      if (document.activeElement?.tagName === 'INPUT' || document.activeElement?.tagName === 'TEXTAREA') return
       if (e.key === 'Enter') init()
       if (e.key === ' ' && config) { e.preventDefault(); setIsPlaying(p => !p) }
       if (e.key === 'ArrowRight') step()
@@ -226,14 +232,7 @@ export default function TuringMachine() {
                   <div className="flex gap-0 mt-2">
                     {visibleTape.map(({ idx, sym }) => {
                       const isHead = idx === config?.headPosition
-                    
-  useEffect(() => {
-    const payload = consumeRestoreSession('tm')
-    if (payload) {
-      if (payload) setTm(payload)
-    }
-  }, [])
-  return (
+                      return (
                         <div key={idx} className={'w-14 h-14 flex items-center justify-center border-y border-x-[0.5px] transition-all duration-300 ' +
                           (isHead ? 'border-gold bg-gold/15 scale-110 shadow-[0_0_20px_rgba(255,219,60,0.2)] z-10' : 'border-white/10 bg-surface/60')}>
                           <span className={'font-headline italic text-xl ' + (isHead ? 'text-gold' : sym === '_' ? 'text-on-surface-variant/30' : 'text-cream')}>{sym}</span>

@@ -33,6 +33,7 @@ export default function DFASimulator() {
   // Keyboard shortcuts
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
+      if (document.activeElement?.tagName === 'INPUT' || document.activeElement?.tagName === 'TEXTAREA') return
       if (e.key === 'Enter' && !e.ctrlKey) runSimulation()
       if (e.key === ' ' && steps.length > 0) { e.preventDefault(); setIsPlaying(p => !p) }
       if (e.key === 'ArrowRight' && steps.length > 0) setCurrentStep(s => Math.min(s + 1, steps.length - 1))
