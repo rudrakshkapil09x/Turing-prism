@@ -134,7 +134,7 @@ export default function RAGPanel({ simulatorId, unit, onLoadAutomata }: RAGPanel
                   <button
                     onClick={() => {
                       onLoadAutomata(msg.payloadType!, msg.payload)
-                      saveToArchive(simulatorId, msg.text || 'Imported via AI Assistant', msg.payload, msg.payloadType!)
+                      saveToArchive(simulatorId, unit, msg.text || 'Imported via AI Assistant', msg.payload, msg.payloadType!)
                     }}
                     className="flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-label uppercase tracking-wider transition-all duration-200 cursor-pointer hover:scale-[1.02]"
                     style={{

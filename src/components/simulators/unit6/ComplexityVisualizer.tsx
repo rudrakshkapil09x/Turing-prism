@@ -29,8 +29,8 @@ export default function ComplexityVisualizer() {
 
     setIsAnalyzing(true)
     try {
-      const res = await askRAG('complexity', `Analyze the complexity class of this problem: ${query}. Respond strictly matching the schema: return its name, a list of 'class' strings like ['NP', 'NP-Complete'], a concise description, a concrete example, and an array of reductions. Add accurate content.`);
-      if (res.status === 'success' && res.payload) {
+      const res = await askRAG('unit6', `Analyze the complexity class of this problem: ${query}. Respond strictly matching the schema: return its name, a list of 'class' strings like ['NP', 'NP-Complete'], a concise description, a concrete example, and an array of reductions. Add accurate content.`);
+      if (res && res.payload) {
         setHighlighted(res.payload as ComplexityProblem)
       } else {
         setError('Analysis failed. Try rephrasing.')

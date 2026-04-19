@@ -38,7 +38,7 @@ export default function CFGParser() {
   useEffect(() => {
     const payload = consumeRestoreSession('cfg')
     if (payload) {
-      if (payload) setCfg(payload)
+      if (payload) setGrammarText(payload)
     }
   }, [])
   return (

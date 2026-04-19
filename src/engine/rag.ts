@@ -7,7 +7,7 @@ import type { TuringMachine } from './turing'
 export type RagUnit = 'unit1' | 'unit2' | 'unit3' | 'unit4' | 'unit5' | 'unit6'
 
 export interface RagResponse {
-  type: 'dfa' | 'nfa' | 'regex' | 'cfg' | 'pda' | 'tm' | 'text' | 'pumping'
+  type: 'dfa' | 'nfa' | 'regex' | 'cfg' | 'pda' | 'tm' | 'text' | 'pumping' | 'complexity' | 'pumping_cfl'
   message: string
   payload?: any
 }

@@ -21,6 +21,14 @@ export default function CFLPumpingLemma() {
     setQuery(cflKnowledge[0].language)
   }, [])
 
+  useEffect(() => {
+    const payload = consumeRestoreSession('cfl-pumping')
+    if (payload) {
+      setSelected(payload)
+      setQuery(payload.language || "")
+    }
+  }, [])
+
   const [isAnalyzing, setIsAnalyzing] = useState(false)
   const [error, setError] = useState('')
 
@@ -148,14 +156,7 @@ export default function CFLPumpingLemma() {
                 <div className="space-y-3">
                   {[0, 1, 2, 3, 4].map(i => {
                     const pumped = pumpedAtI(i)
-                  
-  useEffect(() => {
-    const payload = consumeRestoreSession('cfl-pumping')
-    if (payload) {
-      if (payload) { setSelected(payload); setQuery(payload.language || ""); }
-    }
-  }, [])
-  return (
+                    return (
                       <div key={i} className={'flex items-center gap-4 px-4 py-3 rounded-xl transition-all duration-300 border ' +
                         (i === pumpCount ? 'bg-gold/10 border-gold/30 shadow-[0_0_20px_rgba(255,219,60,0.15)] scale-[1.02]' : 'border-white/5 bg-white/[0.02] hover:bg-white/[0.04]')}>
                         <span className={'text-[10px] uppercase tracking-widest font-label w-12 ' + (i === pumpCount ? 'text-gold' : 'text-on-surface-variant')}>i = {i}</span>

@@ -25,7 +25,7 @@ export default function CNFGNFConverter() {
   useEffect(() => {
     const payload = consumeRestoreSession('cnf-gnf')
     if (payload) {
-      if (payload) setCfg(payload)
+      if (payload) setGrammarText(payload)
     }
   }, [])
   return (
